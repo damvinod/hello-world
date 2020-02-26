@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "docker-example.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "docker-example.name" . }}
+    helm.sh/chart: {{ include "docker-example.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http-app
+  selector:
+    app.kubernetes.io/name: {{ include "docker-example.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
