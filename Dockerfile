@@ -1,4 +1,4 @@
-FROM gradle:5.6.2-jdk11 as build
+FROM gradle:8.11.1-jdk23 as build
 
 ARG GRADLE_CI_FLAGS=""
 ENV GRADLE_OPTS="-Xms64m -Xmx192m -Dorg.gradle.daemon=false"
@@ -11,7 +11,7 @@ RUN gradle -x check build ${GRADLE_CI_FLAGS} \
     && mkdir -p build/dependency \
     && unzip build/libs/*.jar -d build/dependency
 
-FROM adoptopenjdk/openjdk11:jre-11.0.4_11-alpine
+FROM eclipse-temurin:23-jre-alpine
 
 # Change the default JVM DNS cache
 ARG JAVA_DNS_TTL_SECONDS=60
