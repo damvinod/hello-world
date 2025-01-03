@@ -17,6 +17,9 @@ FROM eclipse-temurin:23-jre-alpine
 ARG JAVA_DNS_TTL_SECONDS=60
 RUN printf "\nnetworkaddress.cache.ttl=%s\n" ${JAVA_DNS_TTL_SECONDS} >> "${JAVA_HOME}/conf/security/java.security"
 
+RUN apk add --update curl && \
+    rm -rf /var/cache/apk/* \
+
 RUN addgroup -g 1000 appuser && \
     adduser -D -u 1000 -G appuser appuser
 USER appuser
