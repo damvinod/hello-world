@@ -29,5 +29,5 @@ COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app/classes
 
-ENTRYPOINT ["java","-cp","lib/*:classes","com.damvinod.docker.example.DockerExampleApplication"]
+ENTRYPOINT ["java","-cp","lib/*:classes","com.damvinod.hello.world.HelloWorldApplication"]
 EXPOSE 8080
