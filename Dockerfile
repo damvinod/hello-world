@@ -11,7 +11,7 @@ RUN gradle -x check build ${GRADLE_CI_FLAGS} \
     && mkdir -p build/dependency \
     && unzip build/libs/*.jar -d build/dependency
 
-FROM eclipse-temurin:23-jre-alpine
+FROM eclipse-temurin:24-jre-alpine
 
 # Change the default JVM DNS cache
 ARG JAVA_DNS_TTL_SECONDS=60
